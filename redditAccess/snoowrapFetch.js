@@ -9,7 +9,7 @@ const r = new snoowrap({
     password: MYPW
 });
 
-async function getRandomHotPost(subreddit) {
+export async function getRandomHotPost(subreddit) {
     const submissions = await r.getSubreddit(subreddit).getHot();
     const randomIndex = Math.floor(Math.random() * submissions.length);
     const randomPost = submissions[randomIndex];

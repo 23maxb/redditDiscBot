@@ -3,7 +3,7 @@ const TOKEN = require("fs").readFileSync("./token.txt").toString();
 const CLIENTID = require("fs").readFileSync("./clientid.txt").toString();
 const Discord = require("discord.js");
 const {REST, Routes} = require("discord.js");
-const reddit = require("./redditAccess/snoowrapFetch.js")
+const getPost = require("./redditAccess/snoowrapFetch.js").getRandomHotPost;
 
 const commands = [
     {
@@ -42,8 +42,7 @@ client.on("messageCreate", msg => {
         } else {
             const subreddit = args[2];
             msg.reply('Getting post from subreddit ' + subreddit);
-            reddit.
-            redditAccess.snooWrapFetch.getRandomHotPost(subreddit).then(post => msg.reply(post[0] + "\n" + post[1]));
+            getPost(subreddit).then(post => msg.reply(post[0] + "\n" + post[1]));
         }
     }
     const id = msg.author.id;
